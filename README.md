@@ -194,7 +194,7 @@ LLM calls are slower than most node types: loading `llama3.2` from disk on a col
 
 Common failures:
 
-**Ollama is not running, or the model is not pulled.** Invoke still returns the standard envelope, with the failure attributed to the LLM node:
+**Ollama is not running, or the model is not pulled.** Invoke still answers with the standard envelope (the examples below are trimmed to the keys that matter here; a real response also carries `run_id`, `version`, `device`, and `timing`), with the failure attributed to the LLM node:
 
 ```json
 {
