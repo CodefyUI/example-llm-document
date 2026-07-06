@@ -1,0 +1,23 @@
+{
+  "format_version": 1,
+  "positions": {
+    "start-1": {
+      "x": -160,
+      "y": 100
+    },
+    "input-document": {
+      "x": 80,
+      "y": 100
+    },
+    "llm-1": {
+      "x": 320,
+      "y": 100
+    },
+    "output-result": {
+      "x": 560,
+      "y": 100
+    }
+  },
+  "notes": {},
+  "segmentGroups": []
+}

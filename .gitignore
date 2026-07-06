@@ -1,0 +1,12 @@
+.env
+*.pt
+*.pth
+*.safetensors
+*.onnx
+*.ckpt
+*.pkl
+__pycache__/
+*.db
+.DS_Store
+# interrupted atomic writes
+*.tmp-*

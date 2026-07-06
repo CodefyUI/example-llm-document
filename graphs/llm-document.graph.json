@@ -1,0 +1,79 @@
+{
+  "format_version": 1,
+  "name": "llm-document",
+  "description": "Summarize documents with a local LLM, then publish it as an HTTP API. A four-node microservice: POST {\"inputs\": {\"document\": \"...\"}} and get {\"outputs\": {\"result\": \"<3-bullet summary>\"}} back. Uses local Ollama (llama3.2) by default -- no API key in the graph; switch the provider param to ChatGPT API or Claude API for hosted models.",
+  "nodes": [
+    {
+      "id": "start-1",
+      "type": "Start",
+      "data": {
+        "params": {}
+      }
+    },
+    {
+      "id": "input-document",
+      "type": "GraphInput",
+      "data": {
+        "params": {
+          "name": "document",
+          "type": "string",
+          "required": true,
+          "default": "CodefyUI is a visual environment for building AI systems as node graphs. Saved graphs can be published as versioned HTTP APIs: GraphInput and GraphOutput nodes define the contract, API keys control access, and every invocation is recorded for inspection. This default text exists so you can press Run on the canvas without typing anything.",
+          "description": "The document text to process. API callers must send this as a string."
+        }
+      }
+    },
+    {
+      "id": "llm-1",
+      "type": "LLMChat",
+      "data": {
+        "params": {
+          "provider": "Ollama",
+          "model": "llama3.2",
+          "prompt": "",
+          "system_prompt": "You are a document processing service. Summarize the provided document in 3 concise bullet points.",
+          "ollama_base_url": "http://127.0.0.1:11434/v1",
+          "max_tokens": 512,
+          "temperature": 0.2
+        }
+      }
+    },
+    {
+      "id": "output-result",
+      "type": "GraphOutput",
+      "data": {
+        "params": {
+          "name": "result",
+          "description": "The generated summary."
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-trigger",
+      "source": "start-1",
+      "target": "input-document",
+      "sourceHandle": "trigger",
+      "targetHandle": "",
+      "type": "trigger"
+    },
+    {
+      "id": "e-document",
+      "source": "input-document",
+      "target": "llm-1",
+      "sourceHandle": "value",
+      "targetHandle": "text",
+      "type": "data"
+    },
+    {
+      "id": "e-result",
+      "source": "llm-1",
+      "target": "output-result",
+      "sourceHandle": "text",
+      "targetHandle": "value",
+      "type": "data"
+    }
+  ],
+  "presets": []
+}

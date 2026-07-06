@@ -1,0 +1,13 @@
+[project]
+name = "example-llm-document"
+format_version = 1
+requires_codefyui = ">=1.4"   # advisory metadata; NOT enforced
+
+[plugins]
+# written by `cdui project freeze`; installed by `cdui project restore`
+# some-pack = { url = "https://github.com/owner/repo", ref = "v1.2", sha = "<40-hex>" }
+
+[publish]                      # optional single default target
+# graph = "my-graph"
+# slug = "my-service"
+# record_io = true
